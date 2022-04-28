@@ -8,6 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { SidenavModule } from './components/sidenav/sidenav.module';
 
 // Module - модуль
@@ -25,6 +27,8 @@ import { SidenavModule } from './components/sidenav/sidenav.module';
 		MatIconModule,
 		MatButtonModule,
 		SidenavModule,
+		MatInputModule,
+		MatListModule,
 	], // import ...
 	providers: [],
 	bootstrap: [AppComponent],
