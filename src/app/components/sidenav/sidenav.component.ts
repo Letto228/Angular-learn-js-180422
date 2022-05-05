@@ -1,48 +1,73 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	ContentChild,
+	OnInit,
+	TemplateRef,
+	ViewChild,
+	ViewContainerRef,
+} from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
 	selector: 'app-sidenav',
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.less'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// OnInit,
-// DoCheck,
-// AfterContentChecked,
-// AfterContentInit,
-// AfterViewChecked,
-// AfterViewInit,
-// OnDestroy
-export class SidenavComponent implements OnChanges {
-	@Input() opened = true;
-	@Input() navListTemplate!: TemplateRef<unknown>;
-	@Output() openedChange = new EventEmitter<boolean>();
+export class SidenavComponent implements OnInit {
+	// @Input() text: string = '';
+
+	@ViewChild('navListContainer', {
+		read: ViewContainerRef,
+		static: true,
+	})
+	private navListContainer!: ViewContainerRef;
+	@ViewChild(MatDrawer, { static: true })
+	private matDrawer!: MatDrawer;
+
+	@ContentChild('navList', { static: true })
+	private navListTemplate!: TemplateRef<unknown>;
+
+	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+	// private _counter = 1;
+
+	// get counter(): number {
+	// 	console.log('CD SidenavComponent', this.text);
+
+	// 	return this._counter;
+	// }
+
+	// isDrawerView = true;
 
 	onToggleSidenav() {
-		this.openedChange.emit(!this.opened);
+		this.matDrawer.toggle();
+		this.changeDetectorRef.markForCheck();
 	}
 
-	ngOnChanges({ navListTemplate }: SimpleChanges): void {
-		// navListTemplate.currentValue === this.navListTemplate;
-		if (navListTemplate) {
-			this.viewNavListTemplate();
-		}
+	// log() {}
+
+	ngOnInit() {
+		// this.changeDetectorRef.detach();
+
+		// setInterval(() => {
+		// 	this._counter += 1;
+		// }, 500);
+
+		// setTimeout(() => {
+		// 	this.changeDetectorRef.detectChanges();
+		// }, 3000);
+
+		// setTimeout(() => {
+		// 	this.changeDetectorRef.reattach();
+		// }, 6000);
+
+		this.viewNavListTemplate();
 	}
 
 	private viewNavListTemplate() {
-		// view this.navListTemplate
+		this.navListContainer.createEmbeddedView(this.navListTemplate);
 	}
-
-	// ngOnInit(): void {}
-
-	// ngDoCheck(): void {}
-
-	// ngAfterContentChecked(): void {}
-
-	// ngAfterContentInit(): void {}
-
-	// ngAfterViewChecked(): void {}
-
-	// ngAfterViewInit(): void {}
-
-	// ngOnDestroy(): void {}
 }
