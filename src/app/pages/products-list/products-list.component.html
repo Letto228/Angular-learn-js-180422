@@ -1,0 +1,34 @@
+<mat-form-field class="search-input" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input #serachInput matInput>
+</mat-form-field>
+
+<div
+    *ngIf="products; else loadingStub"
+    class="products-container"
+>
+    <app-product-card
+        *ngFor="let product of products; trackBy: trackByName"
+        class="product-card"
+        [product]="product"
+    ></app-product-card>
+</div>
+
+<!-- <ng-template let-prods="ngIf" [ngIf]="products" [ngIfElse]="loadingStub">
+    <div class="products-container">
+        <ng-template
+            ngFor
+            let-product
+            let-i="index"
+            [ngForOf]="products"
+            [ngForTrackBy]="trackByName"
+        >
+            <app-product-card class="product-card" [product]="product"></app-product-card>
+        </ng-template> -->
+        <!-- tmpl context -> {$implicit: {name: string}, index: number} -->
+    <!-- </div>
+</ng-template> -->
+
+<ng-template #loadingStub>
+    <mat-spinner></mat-spinner>
+</ng-template>

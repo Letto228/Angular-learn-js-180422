@@ -3,15 +3,10 @@
     (menuClick)="onMenuClick()"
 ></app-header>
 <app-sidenav> 
-    <mat-form-field class="search-input" appearance="fill">
-        <mat-label>Search</mat-label>
-        <input #serachInput matInput>
-    </mat-form-field>
-    {{serachInput.value}}
+    <app-products-list></app-products-list>
 
     <ng-template #navList>
         <mat-list #list role="list">
-        <!-- list = MatList -->
             <mat-list-item role="listitem">Item 1</mat-list-item>
             <mat-list-item role="listitem">Item 2</mat-list-item>
             <mat-list-item role="listitem">Item 3</mat-list-item>
