@@ -8,4 +8,11 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
 export class HeaderComponent {
 	@Input() title!: string;
 	@Output() menuClick = new EventEmitter<void>();
+
+	user = {
+		basket: {
+			sum: 2000,
+			valute: 'RUB',
+		},
+	};
 }

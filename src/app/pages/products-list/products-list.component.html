@@ -3,16 +3,34 @@
     <input #serachInput matInput>
 </mat-form-field>
 
+<div *appGallery="let imgSrc from images; let next = next; let back = back" class="gallery">
+    <button mat-icon-button (click)="back()">
+        <mat-icon>
+            chevron_left
+        </mat-icon>
+    </button>
+    <img class="gallery__img" [src]="imgSrc">
+    <button mat-icon-button (click)="next()">
+        <mat-icon>
+            chevron_right
+        </mat-icon>
+    </button>
+</div>
+
+<!-- {ngIf: products$ | async} -->
+<!-- let-products="ngIf" -->
 <div
-    *ngIf="products; else loadingStub"
+    *ngIf="(products$ | async) as products; else loadingStub"
     class="products-container"
 >
+    <!-- productsFilter(async(products$), serachInput.value) -->
     <app-product-card
-        *ngFor="let product of products; trackBy: trackByName"
+        *ngFor="let product of (products | productsFilter : serachInput.value); trackBy: trackByName"
         class="product-card"
         [product]="product"
     ></app-product-card>
 </div>
+
 
 <!-- <ng-template let-prods="ngIf" [ngIf]="products" [ngIfElse]="loadingStub">
     <div class="products-container">
@@ -32,3 +50,38 @@
 <ng-template #loadingStub>
     <mat-spinner></mat-spinner>
 </ng-template>
+
+<!-- <div
+    *ngIf="(groupedProducts$ | async) as groupedProducts; else loadingStub"
+    class="products-container"
+>
+    <div *appGallery="let products from groupedProducts; let next = next; let back = back; let setIndex = setIndex; let activeIndex = index">
+        <div class="products-container">
+            <app-product-card
+                *ngFor="let product of products; trackBy: trackByName"
+                class="product-card"
+                [product]="product"
+            ></app-product-card>
+        </div>
+        <div class="products-container">
+            <button mat-icon-button (click)="back()">
+                <mat-icon>
+                    chevron_left
+                </mat-icon>
+            </button>
+            <button
+                *ngFor="let group of groupedProducts; let index = index"
+                mat-icon-button
+                [class.active]="activeIndex === index"
+                (click)="setIndex(index)"
+            >
+                {{index + 1}}
+            </button>
+            <button mat-icon-button (click)="next()">
+                <mat-icon>
+                    chevron_right
+                </mat-icon>
+            </button>
+        </div>
+    </div>
+</div> -->
