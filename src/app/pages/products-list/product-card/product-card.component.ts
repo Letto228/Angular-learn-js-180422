@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { json } from './utils';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-product-card',
@@ -7,19 +6,6 @@ import { json } from './utils';
 	styleUrls: ['./product-card.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
 	@Input() product!: { name: string };
-
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
-
-	ngOnInit() {
-		setInterval(() => {
-			this.changeDetectorRef.detectChanges();
-		}, 500);
-	}
-
-	json(product: Object) {
-		console.log('called');
-		return json(product);
-	}
 }

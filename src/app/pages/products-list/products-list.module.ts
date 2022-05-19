@@ -24,6 +24,16 @@ import { LetModule } from '../../shared/directives/let/let.module';
 		ProductsFilterModule,
 		LetModule,
 	],
+	providers: [
+		{
+			provide: 'ProductsServiceCopy',
+			useValue: {},
+			// useClass: ProductsService,
+			// useExisting: ProductsService,
+			// useFactory: (productsService: ProductsService) => productsService,
+			// deps: [ProductsService],
+		},
+	],
 	exports: [ProductsListComponent],
 })
 export class ProductsListModule {}
