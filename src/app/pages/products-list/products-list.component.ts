@@ -6,6 +6,12 @@ import { ProductsService } from '../../shared/services/products.service';
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		// {
+		// 	provide: COMPONENT_NAME_TOKEN,
+		// 	useValue: 'ProductsListComponent',
+		// }
+	],
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$ = this.productsService.products$;
@@ -16,7 +22,11 @@ export class ProductsListComponent implements OnInit {
 		'https://picfiles.alphacoders.com/305/305132.jpg',
 	];
 
-	constructor(private productsService: ProductsService) {}
+	constructor(
+		private productsService: ProductsService, // @Optional() @Host() @Inject(COMPONENT_NAME_TOKEN) private name: number,
+	) {
+		// console.log(this.name);
+	}
 
 	ngOnInit() {
 		this.productsService.loadProducts();

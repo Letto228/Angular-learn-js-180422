@@ -7,7 +7,7 @@ import { ProductsApiService } from './products-api.service';
 	providedIn: 'root',
 })
 export class ProductsService {
-	private _products$ = new BehaviorSubject<IProduct[] | null>(null);
+	private _products$ = new BehaviorSubject<IProduct[]>([]);
 
 	get products$(): Observable<IProduct[] | null> {
 		return this._products$.asObservable();
@@ -18,6 +18,12 @@ export class ProductsService {
 	loadProducts() {
 		this.productsApiService.getProducts$().subscribe((products) => {
 			this._products$.next(products);
+		});
+	}
+
+	loadProduct(id: string) {
+		this.productsApiService.getProduct$(id).subscribe((product) => {
+			this._products$.next([...this._products$.value.filter(({ _id }) => _id !== id), product]);
 		});
 	}
 }

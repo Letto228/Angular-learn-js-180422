@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable, pluck } from 'rxjs';
+import { Observable, pluck, tap } from 'rxjs';
 import { IProduct } from '../interfaces/product.interface';
 import { BASE_URL } from '../tokens/base-url.token';
 
@@ -12,6 +12,9 @@ export class ProductsApiService {
 
 	getProducts$(): Observable<IProduct[]> {
 		return this.http.get<{ items: IProduct[] }>('/products/suggestion').pipe(pluck('items'));
-		// return of(productsMock);
+	}
+
+	getProduct$(id: string): Observable<IProduct> {
+		return this.http.get<IProduct>(`/products/${id}`).pipe(tap(console.log));
 	}
 }

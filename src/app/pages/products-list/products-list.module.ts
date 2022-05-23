@@ -10,6 +10,7 @@ import { GalleryModule } from '../../shared/directives/gallery/gallery.module';
 import { JsonModule } from '../../shared/pipes/json/json.module';
 import { ProductsFilterModule } from '../../shared/pipes/products-filter/products-filter.module';
 import { LetModule } from '../../shared/directives/let/let.module';
+import { ProductsListRoutingModule } from './products-list-routing.module';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -23,16 +24,7 @@ import { LetModule } from '../../shared/directives/let/let.module';
 		JsonModule,
 		ProductsFilterModule,
 		LetModule,
-	],
-	providers: [
-		{
-			provide: 'ProductsServiceCopy',
-			useValue: {},
-			// useClass: ProductsService,
-			// useExisting: ProductsService,
-			// useFactory: (productsService: ProductsService) => productsService,
-			// deps: [ProductsService],
-		},
+		ProductsListRoutingModule,
 	],
 	exports: [ProductsListComponent],
 })

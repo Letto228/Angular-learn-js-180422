@@ -8,17 +8,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
 import { SidenavModule } from './components/sidenav/sidenav.module';
 import { NgClassModule } from './shared/directives/ng-class/ng-class.module';
 import { ClickShadowModule } from './shared/directives/click-shadow/click-shadow.module';
-import { ProductsListModule } from './pages/products-list/products-list.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseUrlInterceptor } from './shared/interceptors/base-url.interceptor';
 import { MapResponceInterceptor } from './shared/interceptors/map-responce.interceptor';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-	declarations: [AppComponent, HeaderComponent],
+	declarations: [AppComponent, HeaderComponent, NotFoundComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -27,26 +26,11 @@ import { MapResponceInterceptor } from './shared/interceptors/map-responce.inter
 		MatIconModule,
 		MatButtonModule,
 		SidenavModule,
-		MatListModule,
 		NgClassModule,
 		ClickShadowModule,
-		ProductsListModule,
 		HttpClientModule,
-		// ...
 	],
 	providers: [
-		// ProductsService,
-		// {
-		// provide: ProductsService,
-		// useClass: ProductsService,
-		// useValue: {loadProducts() {}, products$: of()},
-		// useFactory: (productsApiService: ProductsApiService) => new ProductsService(productsApiService),
-		// deps: [ProductsApiService],
-		// },
-		// {
-		// 	provide: BASE_URL,
-		// 	useValue: 'https://course-angular.javascript.ru/api',
-		// }
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: BaseUrlInterceptor,
@@ -69,3 +53,14 @@ export class AppModule {}
 // ^
 // |
 // RootInjector(=== AppModuleInjector)
+
+// ^
+// |
+
+// AppElementInjector
+// ^
+// |
+// ProductsListElementInjector
+// ^
+// |
+// ProductCardElementInjector

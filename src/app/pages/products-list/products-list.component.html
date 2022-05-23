@@ -17,71 +17,18 @@
     </button>
 </div>
 
-<!-- {ngIf: products$ | async} -->
-<!-- let-products="ngIf" -->
 <div
     *ngIf="(products$ | async) as products; else loadingStub"
     class="products-container"
 >
-    <!-- productsFilter(async(products$), serachInput.value) -->
     <app-product-card
         *ngFor="let product of (products | productsFilter : serachInput.value); trackBy: trackByName"
         class="product-card"
+        [routerLink]="'/product/' + product._id"
         [product]="product"
     ></app-product-card>
 </div>
 
-
-<!-- <ng-template let-prods="ngIf" [ngIf]="products" [ngIfElse]="loadingStub">
-    <div class="products-container">
-        <ng-template
-            ngFor
-            let-product
-            let-i="index"
-            [ngForOf]="products"
-            [ngForTrackBy]="trackByName"
-        >
-            <app-product-card class="product-card" [product]="product"></app-product-card>
-        </ng-template> -->
-        <!-- tmpl context -> {$implicit: {name: string}, index: number} -->
-    <!-- </div>
-</ng-template> -->
-
 <ng-template #loadingStub>
     <mat-spinner></mat-spinner>
 </ng-template>
-
-<!-- <div
-    *ngIf="(groupedProducts$ | async) as groupedProducts; else loadingStub"
-    class="products-container"
->
-    <div *appGallery="let products from groupedProducts; let next = next; let back = back; let setIndex = setIndex; let activeIndex = index">
-        <div class="products-container">
-            <app-product-card
-                *ngFor="let product of products; trackBy: trackByName"
-                class="product-card"
-                [product]="product"
-            ></app-product-card>
-        </div>
-        <div class="products-container">
-            <button mat-icon-button (click)="back()">
-                <mat-icon>
-                    chevron_left
-                </mat-icon>
-            </button>
-            <button
-                *ngFor="let group of groupedProducts; let index = index"
-                mat-icon-button
-                [class.active]="activeIndex === index"
-                (click)="setIndex(index)"
-            >
-                {{index + 1}}
-            </button>
-            <button mat-icon-button (click)="next()">
-                <mat-icon>
-                    chevron_right
-                </mat-icon>
-            </button>
-        </div>
-    </div>
-</div> -->
