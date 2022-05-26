@@ -1,2 +1,29 @@
-<button (click)="onBack()">Back</button>
-{{(product$ | async)?.name}}
+<button
+    mat-icon-button
+    (click)="onBack()"
+>
+    <mat-icon>
+        arrow_back_ios
+    </mat-icon>
+</button>
+<ng-container *ngIf="(product$ | async) as product">
+    <img class="preview" [src]="product.images[0].url">
+    <div class="content">
+        <nav mat-tab-nav-bar>
+            <a
+                mat-tab-link
+                routerLink="./description"
+            >
+                Description
+            </a>
+            <a
+                mat-tab-link
+                routerLink="./feedback"
+            >
+                Feedback
+            </a>
+        </nav>
+        
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>

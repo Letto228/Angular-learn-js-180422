@@ -54,10 +54,15 @@ export class AppModule {}
 // |
 // RootInjector(=== AppModuleInjector)
 
-// ^
-// |
+// ^								// ^
+// |								// |
 
-// AppElementInjector
+// ProductsListModuleInjector | ProductModuleInjector
+
+// ^							// ^
+// |							// |
+
+// AppElementInjector			ProductElementInjector
 // ^
 // |
 // ProductsListElementInjector
