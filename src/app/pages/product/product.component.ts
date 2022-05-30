@@ -23,20 +23,18 @@ export class ProductComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		// this.product$ = this.activatedRoute.paramMap.pipe(
-		// 	map((paramMap) => paramMap.get('id') as string),
-		// 	tap((id: string) => {
-		// 		this.productsService.loadProduct(id);
-		// 	}),
-		// 	switchMap((id) =>
-		// 		this.productsService.products$.pipe(
-		// 			tap(console.log),
-		// 			map((products) => products?.find(({ _id }: IProduct) => _id === id)),
-		// 		),
-		// 	),
-		// );
-		this.product$ = this.activatedRoute.data.pipe(map(({ product }) => product));
-		console.log(this.activatedRoute.snapshot.data);
+		this.product$ = this.activatedRoute.paramMap.pipe(
+			map((paramMap) => paramMap.get('id') as string),
+			tap((id: string) => {
+				this.productsService.loadProduct(id);
+			}),
+			switchMap((id) =>
+				this.productsService.products$.pipe(
+					tap(console.log),
+					map((products) => products?.find(({ _id }: IProduct) => _id === id)),
+				),
+			),
+		);
 	}
 
 	onBack() {

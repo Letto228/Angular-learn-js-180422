@@ -11,6 +11,10 @@ import { JsonModule } from '../../shared/pipes/json/json.module';
 import { ProductsFilterModule } from '../../shared/pipes/products-filter/products-filter.module';
 import { LetModule } from '../../shared/directives/let/let.module';
 import { ProductsListRoutingModule } from './products-list-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IsStringModule } from '../../shared/validators/directives/is-string/is-string.module';
+import { IsStringAsyncModule } from 'src/app/shared/validators/directives/is-string-async/is-string-async.module';
+import { CounterInputModule } from 'src/app/shared/inputs/counter-input/counter-input.module';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -25,6 +29,11 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
 		ProductsFilterModule,
 		LetModule,
 		ProductsListRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		IsStringModule,
+		IsStringAsyncModule,
+		CounterInputModule,
 	],
 	exports: [ProductsListComponent],
 })

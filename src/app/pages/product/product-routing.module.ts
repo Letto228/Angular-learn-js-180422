@@ -10,11 +10,19 @@ import { ProductComponent } from './product.component';
 
 const routes: Routes = [
 	{
+		path: 'root/:id',
+		component: FeedbackComponent,
+	},
+	{
+		path: ':id/root',
+		redirectTo: 'root/:id',
+	},
+	{
 		path: ':id',
 		component: ProductComponent,
-		resolve: {
-			product: ProductResolver,
-		},
+		// resolve: {
+		// 	product: ProductResolver,
+		// },
 		canActivate: [CanActivateGuard],
 		children: [
 			{
@@ -27,16 +35,16 @@ const routes: Routes = [
 				canDeactivate: [CanLeaveGuard],
 				component: FeedbackComponent,
 			},
+			// {
+			// 	path: 'root',
+			// 	redirectTo: '../root/:id' dont work
+			// },
 			{
 				path: '**',
 				redirectTo: 'description',
 			},
 		],
 	},
-	// {
-	// 	path: '',
-	// 	redirectTo: '../products-list',
-	// },
 ];
 
 @NgModule({
