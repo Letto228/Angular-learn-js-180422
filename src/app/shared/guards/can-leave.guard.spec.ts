@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { CanLeaveGuard } from './can-leave.guard';
+// import { CanLeaveGuard } from './can-leave.guard';
 
-describe('CanLeaveGuard', () => {
-	let guard: CanLeaveGuard;
+// describe('CanLeaveGuard', () => {
+// 	let guard: CanLeaveGuard;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({});
-		guard = TestBed.inject(CanLeaveGuard);
-	});
+// 	beforeEach(() => {
+// 		TestBed.configureTestingModule({});
+// 		guard = TestBed.inject(CanLeaveGuard);
+// 	});
 
-	it('should be created', () => {
-		expect(guard).toBeTruthy();
-	});
-});
+// 	it('should be created', () => {
+// 		expect(guard).toBeTruthy();
+// 	});
+// });
