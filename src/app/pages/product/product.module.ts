@@ -8,9 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DescriptionComponent } from './description/description.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-	declarations: [ProductComponent, DescriptionComponent, FeedbackComponent],
-	imports: [CommonModule, ProductRoutingModule, MatButtonModule, MatIconModule, MatTabsModule],
+	declarations: [ProductComponent, DescriptionComponent, FeedbackComponent, ProductDialogComponent],
+	imports: [CommonModule, ProductRoutingModule, MatButtonModule, MatIconModule, MatTabsModule, MatDialogModule],
 })
 export class ProductModule {}

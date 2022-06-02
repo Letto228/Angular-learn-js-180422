@@ -1,44 +1,4 @@
-<!-- Template -->
-<mat-form-field class="search-input" appearance="fill">
-    <mat-label>Search</mat-label>
-    <input #templateInput="ngModel" ngModel required minlength="3" appIsStringAsync matInput [ngModelOptions]="{updateOn: 'change'}">
-</mat-form-field>
-{{(templateInput.errors || {}) | json}}
-<!-- {{templateInput.valid}} -->
-
-<!-- <form #form="ngForm" (ngSubmit)="onLog(form)">
-    <mat-form-field class="search-input" appearance="fill">
-        <mat-label>Search</mat-label>
-        <input ngModel matInput name="search">
-    </mat-form-field>
-    <mat-form-field class="search-input" appearance="fill">
-        <mat-label>Subcategory</mat-label>
-        <input ngModel matInput name="subcategory">
-    </mat-form-field>
-
-    <div ngModelGroup="value" class="group">
-        <mat-form-field class="search-input" appearance="fill">
-            <mat-label>Min</mat-label>
-            <input [ngModel]="0" matInput name="min">
-        </mat-form-field>
-        <mat-form-field class="search-input" appearance="fill">
-            <mat-label>Max</mat-label>
-            <input [ngModel]="1000" matInput name="max">
-        </mat-form-field>
-    </div>
-
-    <input type="submit">
-</form> -->
-
-<!-- Reactive -->
-<!-- <mat-form-field class="search-input" appearance="fill">
-    <mat-label>Search</mat-label>
-    <input [formControl]="reactiveControl" matInput>
-</mat-form-field>
-{{(reactiveControl.errors || {}) | json}} -->
-
-
-<!-- <form [formGroup]="reactiveForm">
+<form [formGroup]="reactiveForm">
     <mat-form-field class="search-input" appearance="fill">
         <mat-label>Search</mat-label>
         <input matInput formControlName="search">
@@ -49,22 +9,16 @@
     </mat-form-field>
 
     <div formGroupName="value" class="group">
-        <mat-form-field class="search-input" appearance="fill">
-            <mat-label>Min</mat-label>
-            <input matInput formControlName="min">
-        </mat-form-field>
         <app-counter-input formControlName="min" [step]="200">
             Min
         </app-counter-input>
         <app-counter-input formControlName="max">
             Max
         </app-counter-input>
-        <mat-form-field class="search-input" appearance="fill">
-            <mat-label>Max</mat-label>
-            <input matInput formControlName="max">
-        </mat-form-field>
     </div>
-</form> -->
+</form>
+
+<!-- <input ngModel="" formControlName="subcategory"> -->
 
 <div *appGallery="let imgSrc from images; let next = next; let back = back" class="gallery">
     <button mat-icon-button (click)="back()">
@@ -86,6 +40,7 @@
 >
     <app-product-card
         *ngFor="let product of (products | productsFilter : ''); trackBy: trackByName"
+        automation-id="product-card"
         class="product-card"
         [routerLink]="'/product/' + product._id"
         [product]="product"

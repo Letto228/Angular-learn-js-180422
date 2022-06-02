@@ -23,7 +23,7 @@ const routes: Routes = [
 		// resolve: {
 		// 	product: ProductResolver,
 		// },
-		canActivate: [CanActivateGuard],
+		// canActivate: [CanActivateGuard],
 		children: [
 			{
 				path: 'description',
@@ -31,8 +31,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'feedback',
-				canActivate: [FeedbackGuard],
-				canDeactivate: [CanLeaveGuard],
+				// canActivate: [FeedbackGuard],
+				// canDeactivate: [CanLeaveGuard],
 				component: FeedbackComponent,
 			},
 			// {

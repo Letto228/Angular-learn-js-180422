@@ -1,13 +1,24 @@
 <button
     mat-icon-button
-    (click)="onBack()"
+    routerLink="/products-list"
 >
     <mat-icon>
         arrow_back_ios
     </mat-icon>
 </button>
 <ng-container *ngIf="(product$ | async) as product">
-    <img class="preview" [src]="product.images[0].url">
+    <div>
+        <img class="preview" [src]="product.images[0].url">
+        <button
+            mat-button
+            routerLink="./"
+            [queryParams]="{
+                isDialogOpened: true
+            }"
+        >
+            Open dialog
+        </button>
+    </div>
     <div class="content">
         <nav mat-tab-nav-bar>
             <a

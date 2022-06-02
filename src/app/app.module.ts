@@ -15,6 +15,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseUrlInterceptor } from './shared/interceptors/base-url.interceptor';
 import { MapResponceInterceptor } from './shared/interceptors/map-responce.interceptor';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducers } from './store/reducers';
+import { effects } from './store/effects';
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent, NotFoundComponent],
@@ -29,6 +35,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 		NgClassModule,
 		ClickShadowModule,
 		HttpClientModule,
+		StoreModule.forRoot(reducers),
+		EffectsModule.forRoot(effects),
+		environment.production ? [] : StoreDevtoolsModule.instrument(),
 	],
 	providers: [
 		{
@@ -45,27 +54,3 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-// NullInjector
-// ^
-// |
-// PlatformInjector
-// ^
-// |
-// RootInjector(=== AppModuleInjector)
-
-// ^								// ^
-// |								// |
-
-// ProductsListModuleInjector | ProductModuleInjector
-
-// ^							// ^
-// |							// |
-
-// AppElementInjector			ProductElementInjector
-// ^
-// |
-// ProductsListElementInjector
-// ^
-// |
-// ProductCardElementInjector
